@@ -52,6 +52,7 @@ public class MainFrame extends javax.swing.JFrame implements DocumentLogger{
         document.setDocumentLogger(this);
         CharacterDetectionPanel characterDetectionPanel = new CharacterDetectionPanel(imageOptimizationPanel,document,fontDetectionPanel);
         tabbedPane.addTab("Character Detection", characterDetectionPanel);
+        pack();
     }
 
     /** This method is called from within the constructor to
@@ -74,7 +75,6 @@ public class MainFrame extends javax.swing.JFrame implements DocumentLogger{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 

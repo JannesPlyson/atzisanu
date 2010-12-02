@@ -210,6 +210,41 @@ public class Document {
         }
         return lastCharacter;
     }
+    
+    public int getCharacterIndex(int dot){
+    	int index = 0;
+    	int location = 0;
+        int lineNumber = 0;
+        Line line;
+        int lineCharacterNumber = 0;
+        Character lastCharacter = null;
+        String passedString = "";
+        if(!lines.isEmpty()){
+            line = lines.get(lineNumber);
+            while(location <= dot && lineNumber < lines.size()){
+                if(lineCharacterNumber < line.getCharacters().size()){
+                    lastCharacter = characterCollection.getCharacter(line.getCharacters().get(lineCharacterNumber));
+                    passedString += lastCharacter.getCharacter();
+                    location += lastCharacter.getCharacter().length();
+                    lineCharacterNumber++;
+                    index++;
+                }else{
+                    lineNumber++;
+                    if(lineNumber < lines.size()){
+                        line = lines.get(lineNumber);
+                        lineCharacterNumber = 0;
+                    }
+                    location += newline.length(); //linefeed
+                }
+            }
+        }
+        if(lastCharacter == null){
+            documentLogger.log("Could not find the character from the dot value " + dot);
+            return 0;
+        }else{                   	
+            return index;          
+        }        
+    }
 
     public void detectCharacters(String fontFamily){
         if(documentImage != null){
