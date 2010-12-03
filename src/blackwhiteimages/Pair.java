@@ -6,7 +6,8 @@
 package blackwhiteimages;
 
 /**
- *
+ * testen van de git
+ * testen van de git
  * @author jannes
  */
 public class Pair<E,F> {
