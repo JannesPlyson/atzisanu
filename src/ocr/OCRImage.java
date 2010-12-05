@@ -466,7 +466,8 @@ public class OCRImage{
                     found = hasColorOnVerticalLine(Color.BLACK, right);
                 }
                 lastRight = right;
-                if(!found){
+                //if(!found){
+                if(right != left){
                     BufferedImage bi = new BufferedImage(right-left, image.getHeight(), BufferedImage.TYPE_INT_RGB);
                     for(int y = 0; y < image.getHeight(); y++){
                         for(int x = left; x < right; x++){                            
