@@ -6,9 +6,11 @@
 package gui;
 
 import java.awt.Dimension;
+
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import ocr.Character;
 /**
  *
@@ -24,14 +26,14 @@ public class CharacterPanel extends JPanel{
 
     public CharacterPanel(){}
 
-    public CharacterPanel(Character character){
+    public CharacterPanel(final Character character){
         this.character = character;
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.removeAll();
         ImagePanel imagePanel = new ImagePanel(character.getOriginalImage().image);
         this.add(imagePanel);        
         textField = new JTextField(5);
-        textField.setText(character.getCharacter());
+        textField.setText(character.getCharacter());        
         int height = Math.max(imagePanel.getPreferredSize().height, textField.getPreferredSize().height);
         int width = imagePanel.getPreferredSize().width + textField.getPreferredSize().width;
         this.setPreferredSize(new Dimension(width,height));

@@ -5,6 +5,8 @@
 
 package ocr;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author installer
@@ -12,4 +14,5 @@ package ocr;
 public interface CharacterDetector {
     
     String getString(Character character);
+    ArrayList<String> getDistances(Character character);
 }

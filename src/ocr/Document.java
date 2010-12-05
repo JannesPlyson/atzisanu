@@ -159,8 +159,8 @@ public class Document {
         }else{
             documentLogger.log("can't change characters value: list is not the right size");
         }
-    }
-
+    }    
+    
     public String getText(){
         String s = "";        
         for(int i=0; i<lines.size(); i++){
@@ -209,7 +209,7 @@ public class Document {
             //System.out.println(passedString);
         }
         return lastCharacter;
-    }
+    }        
     
     public int getCharacterIndex(int dot){
     	int index = 0;
@@ -252,7 +252,8 @@ public class Document {
             final Document thisDocument = this;
             new Thread(new Runnable() {
                 public void run() {
-                    CharacterDetector detector = new CharacterDetectorUsingDistanceVector(fontName, charPixelSize, thisDocument);
+                    //CharacterDetector detector = new CharacterDetectorUsingDistanceVector(fontName, charPixelSize, thisDocument);
+                	CharacterDetector detector = new CharacterDetectorAdvancedUsingDistanceVector(fontName, charPixelSize, thisDocument);
                     List<Character> characters = characterCollection.getAlphabet();
                     int alphabetSize = characters.size();
                     for(int i = 0; i < alphabetSize; i++){

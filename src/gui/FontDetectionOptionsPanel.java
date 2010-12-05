@@ -56,7 +56,7 @@ public class FontDetectionOptionsPanel extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 ListModel listModel = fonts.getModel();
                 for(int i = 0; i < listModel.getSize(); i++){
-                    dlm.addElement(listModel.getElementAt(i));
+                    dlm.addElement(listModel.getElementAt(i));                    
                 }
             }
         });
@@ -79,6 +79,7 @@ public class FontDetectionOptionsPanel extends JPanel{
                 super.mouseClicked(e);
                 if(e.getClickCount() == 2){
                     dlm.addElement(fonts.getSelectedValue());
+                    lastFont = "" + fonts.getSelectedValue();
                 }
             }            
         });

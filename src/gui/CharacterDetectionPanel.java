@@ -28,13 +28,6 @@ public class CharacterDetectionPanel extends JPanel{
         this.imageOptimizationPanel = imageOptimizationPanel;
         this.setLayout(new BorderLayout());
         this.document = document;
-        //TextFieldDocumentLogger documentLogger = new TextFieldDocumentLogger();
-        //this.add(documentLogger,BorderLayout.SOUTH);
-        //document.setDocumentLogger(documentLogger);
-
-        AlphabetPanel alphabetPanel = new AlphabetPanel(document);
-        this.add(alphabetPanel, BorderLayout.WEST);
-        document.addDocumentChangedListener(alphabetPanel);
 
         JButton buttonCreateDocument = new JButton("Create document");
         this.add(buttonCreateDocument,BorderLayout.NORTH);

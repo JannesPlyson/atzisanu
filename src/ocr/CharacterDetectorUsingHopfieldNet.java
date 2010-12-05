@@ -127,4 +127,10 @@ public class CharacterDetectorUsingHopfieldNet implements CharacterDetector {
         }*/
 
     }
+
+	@Override
+	public ArrayList<String> getDistances(Character character) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

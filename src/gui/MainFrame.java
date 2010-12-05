@@ -52,7 +52,12 @@ public class MainFrame extends javax.swing.JFrame implements DocumentLogger{
         document.setDocumentLogger(this);
         CharacterDetectionPanel characterDetectionPanel = new CharacterDetectionPanel(imageOptimizationPanel,document,fontDetectionPanel);
         tabbedPane.addTab("Character Detection", characterDetectionPanel);
-        pack();
+        
+        AlphabetPanel alphabetPanel = new AlphabetPanel(document,fontDetectionPanel);
+        document.addDocumentChangedListener(alphabetPanel);
+        tabbedPane.addTab("Alphabet panel", alphabetPanel);
+        
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     /** This method is called from within the constructor to

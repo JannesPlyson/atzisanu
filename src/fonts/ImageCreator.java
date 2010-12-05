@@ -26,11 +26,13 @@ public class ImageCreator{
         ArrayList<Character> characters = new ArrayList<Character>();
         for(int i = 0; i < s.length(); i++){
             String str = "" + s.charAt(i);
-            OCRImage bwiPlain = getImage(str, f);
+            OCRImage bwiPlain = getImage(str, f);            
             if(bwiPlain.image != null){
+            	OCRImage originalImage = new OCRImage(bwiPlain.image);
                 bwiPlain.resize(heightWidth, heightWidth);
                 Character character = new Character(bwiPlain);
                 character.setCharacter(str);
+                character.setOriginalImage(originalImage);
                 characters.add(character);
             }
             OCRImage bwiItalic = getImage(str, font);

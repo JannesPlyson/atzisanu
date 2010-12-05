@@ -6,6 +6,8 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -41,6 +43,18 @@ public class TextPanel extends JPanel implements DocumentChangedListener,KeyList
         textArea.addKeyListener(this);
         textArea.addMouseListener(this);
         textArea.setEditable(false);
+        textArea.addFocusListener(new FocusAdapter() {
+        	@Override
+        	public void focusGained(FocusEvent e) {  
+        		super.focusGained(e);
+        		if(characterPanel.character != null){
+        			characterPanel.character.setCharacter(characterPanel.textField.getText());
+        		}
+        		int caretPosition = textArea.getCaretPosition();
+        		changed();
+        		textArea.setCaretPosition(caretPosition);        		
+        	}
+		});
         this.add(textArea,BorderLayout.CENTER);
         characterPanel = new CharacterPanel();
         this.add(characterPanel,BorderLayout.SOUTH);
@@ -51,7 +65,7 @@ public class TextPanel extends JPanel implements DocumentChangedListener,KeyList
             textArea.setText(document.getText(fontDetectionPanel.getLastFont()));
         }else{
             textArea.setText(document.getText());
-        }
+        }        
     }
 
     public void keyTyped(KeyEvent e) {}
@@ -59,16 +73,23 @@ public class TextPanel extends JPanel implements DocumentChangedListener,KeyList
     public void keyPressed(KeyEvent e) {}
 
     public void keyReleased(KeyEvent e) {
-        //TODO still problems when there are 2 of the same characters after each other.
     	if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_UP){    		
     		if(textArea.getCaretPosition()> 0){
     			textArea.setCaretPosition(textArea.getCaretPosition()-1);
     		}
+    		setSelection();
     	}
         if(e.getKeyCode() == KeyEvent.VK_LEFT){
-        	textArea.setCaretPosition(lastMark-1);            
-        }
-        setSelection();
+        	textArea.setCaretPosition(lastMark-1);
+        	setSelection();
+        }        
+        if(!e.isActionKey()){
+        	characterPanel.textField.setText("" + e.getKeyChar());
+        	characterPanel.character.setCharacter("" + e.getKeyChar());
+        	changed();
+        	textArea.setCaretPosition(lastMark);
+        	setSelection();
+        }        
     }
 
     private Character getCharacter(int caretPosition){
